@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kafka.kafkapractise.model.Message;
 import com.kafka.kafkapractise.services.MessageProducer;
 
 @RestController
@@ -24,7 +25,7 @@ public class KafkaRestController {
 	@RequestMapping(path = "/publish", method = RequestMethod.POST)
 	public void sendMessageToKafkaTopic(@RequestBody String message) {
 		
-		IntStream.range(1, 20).forEach(i -> producer.sendMessage(message + i));
+		IntStream.range(1, 20).forEach(i -> producer.sendMessage(new Message(i, message)));
 		
 	}
 }
