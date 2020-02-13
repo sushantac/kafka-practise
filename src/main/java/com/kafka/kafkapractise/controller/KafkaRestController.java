@@ -1,7 +1,5 @@
 package com.kafka.kafkapractise.controller;
 
-import java.util.stream.IntStream;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,10 +20,20 @@ public class KafkaRestController {
 		this.producer = producer;
 	}
 
-	@RequestMapping(path = "/publish", method = RequestMethod.POST)
-	public void sendMessageToKafkaTopic(@RequestBody String message) {
+	@RequestMapping(path = "/publishSync", method = RequestMethod.POST)
+	public void sendMessageToKafkaTopicSync(@RequestBody Message message) {
 		
-		IntStream.range(1, 20).forEach(i -> producer.sendMessage(new Message(i, message)));
+		//IntStream.range(1, 20).forEach(i -> producer.sendMessageSync(new Message(i, message)));
 		
+		producer.sendMessageSync(message);
+		
+	}
+	
+	@RequestMapping(path = "/publishAsync", method = RequestMethod.POST)
+	public void sendMessageToKafkaTopicAsync(@RequestBody Message message) {
+		
+		//IntStream.range(1, 20).forEach(i -> producer.sendMessageAsync(new Message(i, message)));
+		
+		producer.sendMessageAsync(message);
 	}
 }

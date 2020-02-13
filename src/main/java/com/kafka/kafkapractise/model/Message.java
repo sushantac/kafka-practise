@@ -2,8 +2,12 @@ package com.kafka.kafkapractise.model;
 
 public class Message {
 
-	private final Integer id;
-    private final String message;
+	private Integer id;
+    private String message;
+    
+    public Message() {
+    	
+    }
     
     public Message(Integer id, String message) {
 		super();
@@ -24,6 +28,14 @@ public class Message {
 	@Override
 	public String toString() {
 		return "Message [id=" + id + ", message=" + message + "]";
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
     
     

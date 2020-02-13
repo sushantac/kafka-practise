@@ -6,14 +6,22 @@ spring:
   kafka:
     consumer:
       bootstrap-servers: localhost:9092
-      group-id: group-id
+      group-id: group_id
       auto-offset-reset: earliest
+      enable-auto-commit: false
       key-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: com.kafka.kafkapractise.model
     producer:
       bootstrap-servers: localhost:9092
       key-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-custom:
-  topic-name: first_topic
+
+app:
+  kafka:
+    topic-name: first_topic
   
